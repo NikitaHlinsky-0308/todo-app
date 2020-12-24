@@ -32,6 +32,9 @@ body {
         line-height: 80%;
         margin-top: 10px;
     }
+    .task-list {
+        width: 60vw !important;
+    }
 }
 
 .task-list {
