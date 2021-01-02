@@ -113,7 +113,6 @@ body {
 }
 
 input[type="checkbox"]:checked + .text-item {
-    
     text-decoration: line-through;
 }
 
