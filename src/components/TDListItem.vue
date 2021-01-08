@@ -1,18 +1,37 @@
 <template>
-    <label class="task">
-        <input type="checkbox" class="checkbox" checked/>
-        <span class="checkmark fas fa-check"></span>
-        <span class="text-item">Lorem ipsum dolor sit amet. </span>
-    </label>
+    <ul>
+        <li>
+            <label class="task">
+                <input type="checkbox" class="checkbox" v-model="checked"/>
+                <span class="checkmark fas fa-check"></span>
+                <span class="text-item">{{ text }}</span>
+            </label>
+        </li>
+    </ul>
 </template>
 
 <script>
+
 export default {
-    
+    props: ['todos', 'text', 'checked'],
+    data() {
+        return {
+            
+        }
+    }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+li {
+    list-style-type: none; /* Убираем маркеры */
+}
+
+ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
 
 .task {
     display: block;

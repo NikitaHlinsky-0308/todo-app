@@ -15,7 +15,9 @@ export default {
 }
 </script>
 
-<style scoped>
+
+
+<style lang="scss" scoped>
 
 .main-input {
     display: flex;
@@ -42,4 +44,8 @@ export default {
     outline: 0;
     flex: 1;
 }
+</style>
+
+<style scoped>
+
 </style>
