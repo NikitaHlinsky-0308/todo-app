@@ -1,13 +1,18 @@
-<template>
+<template >
     <label class="form-radio-btn">
-        <input type="radio" name="radio" value="1">
-        <span>btn 1</span>
+        <input type="radio" name="radioBtn" :value="radioText" v-model="radioSelect">
+        <span>{{ radioText }}</span>
     </label>
 </template>
 
 <script>
 export default {
-    
+    props: ['radioText', 'radioSelect'],
+    data() {
+        return {
+            
+        }
+    }
 }
 </script>
 

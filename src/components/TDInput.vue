@@ -23,6 +23,7 @@ export default {
     display: flex;
     width: 100%;
     border-bottom: 1px solid #a7a7a7;
+    
 }
 
 .wrapper {
@@ -44,8 +45,4 @@ export default {
     outline: 0;
     flex: 1;
 }
-</style>
-
-<style scoped>
-
 </style>

@@ -1,12 +1,36 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       
       <router-link to="/about">ToDo</router-link>
     </div>
-    <router-view />
+    <router-view /> -->
+    <h1>TODO.</h1>
+    <todoApp 
+      v-bind:todos="listStub"
+    />
   </div>
 </template>
+
+<script>
+import todoApp from "@/components/TodoApp.vue"
+
+export default {
+  components: {
+    todoApp
+  },
+  data() {
+      return {
+        listStub: [
+          {id: 1, text: "Убрать в доме", isComplete: false},
+          {id: 2, text: "Выгулять собаку", isComplete: false},
+          {id: 3, text: "Зъисты сала", isComplete: false},
+          {id: 4, text: "Сделать сальтуха", isComplete: false},
+        ]
+      }
+    }
+}
+</script>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;1,200&display=swap');
@@ -33,27 +57,22 @@
 }
 
 * {
-    margin: 0;
-    padding: 0;
-}
-
-h1, span {
+  margin: 0;
+  padding: 0;
+  
+  h1, span {
     font-size: 1.5rem;
-}
+  }
 
-body {
+  body {
     background-color: #d1cece;
     color: #6d6d6d;
     font-family: 'Raleway', sans-serif;
+  }
 }
 
-.task-list {
-    margin: 0 auto;
-    height: auto;
-    width: 30vw;
-    line-height: 1.8;
-    background-color: #fff;
-    box-shadow: 0 3px 10px #36363680;
-}
+
+
+
 
 </style>

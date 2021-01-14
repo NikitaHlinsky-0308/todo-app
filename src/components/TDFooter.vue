@@ -4,11 +4,12 @@
             <p>2 2 left</p>
         </div>
         <div class="radio-footer"> 
-
-            <TDRadio />
-            <TDRadio />
-            <TDRadio />
-
+            <TDRadio 
+                v-for="radio in radios"
+                :key = 'radio.id'
+                :radioSelect='radio.isSelected'
+                :radioText='radio.text'
+            />
         </div>
         <div class="condition">
             <p>Clear completed</p>
@@ -20,6 +21,7 @@
 import TDRadio from "../components/TDRadio.vue";
 
 export default {
+    props: ['radios'],
     components: {
         TDRadio
     }
@@ -33,7 +35,6 @@ export default {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
-    /* text-align: center; */
     font-size: .8em;
     padding: .2rem 0;
 }
