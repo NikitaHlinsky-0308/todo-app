@@ -8,6 +8,8 @@
     <h1>TODO.</h1>
     <todoApp 
       v-bind:todos="listStub"
+      v-on:remove-all-todo="completeAllTodo"
+      v-on:remove-todo="completeTodo"
     />
   </div>
 </template>
@@ -19,6 +21,9 @@ export default {
   components: {
     todoApp
   },
+  computed: {
+
+  },
   data() {
       return {
         listStub: [
@@ -28,7 +33,16 @@ export default {
           {id: 4, text: "Сделать сальтуха", isComplete: false},
         ]
       }
+  },
+  methods: {
+    completeTodo(id) {
+      console.log(id);
+      // this.listStub = this.listStub.filter(t => t.id !== 1)
+    },
+    completeAllTodo(condition){
+      this.listStub = this.listStub.filter(task => task.isComplete === condition)
     }
+  }
 }
 </script>
 

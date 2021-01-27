@@ -1,13 +1,13 @@
 <template>
     <div class="task-list">
         <TDInput />
-        <TDListItem 
-            v-for='task in todos'
-            :key = 'task.id'
-            :index = 'task.id'
-            :checked='task.isComplete'
-            :text='task.text'
-            v-on:complete-todo="completeTodo"
+
+        <TDListItem
+            v-for="todo of todos"
+            v-bind:key="todo.id"
+            v-bind:todo="todo"
+            v-on:remove-todo="completeTodo"
+            v-on:remove-all-todo="completeAllTodo"
         />
         <TDFooter
             v-bind:radios="radioStub"
@@ -22,7 +22,7 @@ import TDFooter from "@/components/TDFooter.vue";
 
 export default {
     name: "todo-app",
-    props: ['todos'],
+    // props: ['todos'],
     components: {
         TDListItem,
         TDInput,
@@ -30,21 +30,34 @@ export default {
     },
     methods: {
         completeTodo(index){
-            alert(index)
+            this.$emit('remove-todo', index)
+        },
+        completeAllTodo(condition){
+            this.$emit('remove-all-todo', condition)
+        }
+    },
+    computed: {
+        todos(){
+            return this.$store.state.listStub
         }
     },
     data() {
         return{
             radioStub: [
-            {id: 1, text: "layer 1", isSelected: false},
-            {id: 2, text: "layer 2", isSelected: false},
-        ]
+                {id: 1, text: "layer 1", isSelected: false},
+                {id: 2, text: "layer 2", isSelected: false},
+            ],
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+
+.btn1 {
+    background: #000;
+}
+
 .task-list {
     margin: 0 auto;
     height: auto;

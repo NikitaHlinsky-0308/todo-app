@@ -1,20 +1,30 @@
 <template>   
     <label class="task">
-        <input type="checkbox" class="checkbox" v-model="checked" v-on:click="$emit('completeTodo', index)"/>
+        <input 
+            type="checkbox" class="checkbox" 
+            v-model="todo.isComplete" 
+            v-on:change="$emit('remove-todo', todo.id)"
+        />
+        
         <span class="checkmark fas fa-check"></span>
-        <span class="text-item">{{ text + " " + checked + " " + index}}</span>
+        <span class="text-item">{{ todo.text + " " + todo.isComplete + " " + todo.id}}</span>
     </label>
 </template> 
 
 <script>
 
 export default {
-    props: ['index', 'text', 'checked'],
-    data() {
-        return {
-            
+    props: {
+        todo: {
+            type: Object,
+            required: true,
         }
     },
+    // computed: {
+    //     todo(){
+    //         return this.$store.state.listStub
+    //     }
+    // }
 }
 </script>
 

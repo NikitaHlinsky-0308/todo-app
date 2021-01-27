@@ -1,17 +1,33 @@
 <template>
-    <div class="main-input">
-        <div class="wrapper">
-            <i class="input-btn fas fa-chevron-down"></i>
-            <input class="task-input" type="text" placeholder="What needs to be done?">
-        </div>
+    <div class="main-input" >
+        <form class="wrapper" @submit.prevent="onSubmit">
+            <button type="submit" class="input-btn"><i class="fas fa-chevron-down"></i></button>
+            <input class="task-input" v-model="text" type="text" placeholder="What needs to be done?">
+        </form>
     </div>
 </template>
 
 <script>
-
+import { mapMutations } from 'vuex';
 
 export default {
-    
+    data(){
+        return{
+            id: '',
+            text: '',
+            isComplete: ''
+        }
+    },
+    methods: {
+        ...mapMutations(['createPost']),
+        onSubmit(){
+            this.createPost({
+                id: this.id,
+                text: this.text,
+                isComplete: this.isComplete
+            })
+        },
+    }
 }
 </script>
 
@@ -35,7 +51,13 @@ export default {
 .input-btn {
     border: 0; 
     background-color: transparent;
+    outline: none;
     width: 1.4em;
+    border-radius: .3em;
+}
+
+.input-btn:hover {
+    background-color: #ececec;
 }
 
 .task-input {
