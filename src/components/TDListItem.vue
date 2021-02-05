@@ -7,7 +7,7 @@
         />
         
         <span class="checkmark fas fa-check"></span>
-        <span class="text-item">{{ todo.text + " " + todo.isComplete + " " + todo.id}}</span>
+        <span class="text-item">{{ todo.text + " " + todo.isComplete}}</span>
     </label>
 </template> 
 
@@ -19,12 +19,7 @@ export default {
             type: Object,
             required: true,
         }
-    },
-    // computed: {
-    //     todo(){
-    //         return this.$store.state.listStub
-    //     }
-    // }
+    }
 }
 </script>
 

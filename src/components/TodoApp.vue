@@ -3,8 +3,8 @@
         <TDInput />
 
         <TDListItem
-            v-for="todo of todos"
-            v-bind:key="todo.id"
+            v-for="todo of getState"
+            v-bind:key="todo.text"
             v-bind:todo="todo"
             v-on:remove-todo="completeTodo"
             v-on:remove-all-todo="completeAllTodo"
@@ -19,6 +19,8 @@
 import TDListItem from "@/components/TDListItem.vue";
 import TDInput from "@/components/TDInput.vue";
 import TDFooter from "@/components/TDFooter.vue";
+import { mapGetters } from 'vuex';
+
 
 export default {
     name: "todo-app",
@@ -37,6 +39,7 @@ export default {
         }
     },
     computed: {
+        ...mapGetters(['getState']),
         todos(){
             return this.$store.state.listStub
         }

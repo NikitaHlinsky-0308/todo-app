@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
+    <!-- <div id="nav"> 
       
       <router-link to="/about">ToDo</router-link>
     </div>
     <router-view /> -->
     <h1>TODO.</h1>
     <todoApp 
-      v-bind:todos="listStub"
       v-on:remove-all-todo="completeAllTodo"
       v-on:remove-todo="completeTodo"
     />
@@ -24,15 +23,8 @@ export default {
   computed: {
 
   },
-  data() {
-      return {
-        listStub: [
-          {id: 1, text: "Убрать в доме", isComplete: false},
-          {id: 2, text: "Выгулять собаку", isComplete: false},
-          {id: 3, text: "Зъисты сала", isComplete: false},
-          {id: 4, text: "Сделать сальтуха", isComplete: false},
-        ]
-      }
+  mounted(){
+    this.$store.commit('initTasks')
   },
   methods: {
     completeTodo(id) {

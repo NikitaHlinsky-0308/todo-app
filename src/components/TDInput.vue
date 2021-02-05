@@ -13,19 +13,13 @@ import { mapMutations } from 'vuex';
 export default {
     data(){
         return{
-            id: '',
             text: '',
-            isComplete: ''
         }
     },
     methods: {
         ...mapMutations(['createPost']),
         onSubmit(){
-            this.createPost({
-                id: this.id,
-                text: this.text,
-                isComplete: this.isComplete
-            })
+            this.createPost(this.text)
         },
     }
 }

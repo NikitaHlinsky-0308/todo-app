@@ -4,36 +4,47 @@
             <p>2 2 left</p>
         </div>
         <div class="radio-footer"> 
-            <!-- <TDRadio 
+            <TDRadio 
                 v-for="radio in radios"
-                :key = 'radio.id'
+                :key = 'radio.text'
                 :radioSelect='radio.isSelected'
                 :radioText='radio.text'
-            /> -->
-            {{todo.isComplete}}
+            />
+            {{radios.isComplete}}
         </div>
         <div class="condition">
             <button 
                 class="clearBtn" 
-                v-on:click="$emit('remove-all-todo', todo.isComplete)"
-                >Clear completed </button>
+                @click="deleteCompleted">Clear completed </button>
+                <!-- "$emit('remove-all-todo', todo.isComplete)" -->
         </div>
     </div>
 </template>
 
 <script>
-// import TDRadio from "../components/TDRadio.vue";
+import TDRadio from "../components/TDRadio.vue";
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
-    // props: ['radios'],
+    props: ['radios','todo'],
     // props: {
+    //     radios,
     //     todo: {
     //         type: Object,
     //         required: true,
-    //     }
+    //     },
     // },
     components: {
-        // TDRadio
+        TDRadio
+    },
+    methods:{
+        ...mapMutations(['deleteCompleted']),
+    },
+    computed: {
+        ...mapGetters(['getState']),
+        todos(){
+            return this.$store.state.listStub
+        }
     }
 }
 </script>
