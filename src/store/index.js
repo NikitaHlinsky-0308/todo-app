@@ -5,14 +5,23 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    todos: [
-      { text: 'One', isComplete: false},
-      { text: 'Two', isComplete: false},
-    ],
-    radio: [
-      {text: "layer 2", isSelected: false},
-      {text: "layer 1", isSelected: false},
-  ],
+    todos: [],
+    filter: 'All',
+  },
+  getters: {
+    getState: state => {
+      return state.todos
+    },
+    filteredTasks(state) {
+      switch (state.filter) {
+        case 'Active':
+          return state.todos.filter(todo => !todo.isComplete)
+        case 'Completed':
+          return state.todos.filter(todo => todo.isComplete)
+        default:
+          return state.todos
+      }
+    }
   },
   mutations: {
     initTasks(state){
@@ -25,24 +34,12 @@ export default new Vuex.Store({
       })
       localStorage.setItem('tasks', JSON.stringify(state.todos))
     },
+    setFilter(state, filter) {
+      state.filter = filter
+    },
     deleteCompleted(state){
       state.todos = state.todos.filter(todo => !todo.isComplete)
       localStorage.setItem('tasks', JSON.stringify(state.todos))
-    }
-  },
-  getters: {
-    getState: state => {
-      return state.todos
-    },
-    filteredTasks(state) {
-      switch (state.filter) {
-        case 'Active':
-          return state.tasks.filter(task => !task.isComplete)
-        case 'Completed':
-          return state.tasks.filter(task => task.isComplete)
-        default:
-          return state.tasks
-      }
     }
   },
   actions: {},

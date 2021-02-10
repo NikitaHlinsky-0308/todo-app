@@ -1,17 +1,23 @@
 <template >
-    <label class="form-radio-btn">
-        <input type="radio" name="radioBtn" :value="radioText" v-model="radioSelect">
-        <span>{{ radioText }}</span>
-    </label>
+    <div>
+        <label class="form-radio-btn" v-for="option in options" :key="option">
+            <input
+                type="radio"
+                name="filter"
+                :value="option"
+                :checked="value === option"
+                @change="$emit('input', option)"
+            >
+            <span>{{ option }}</span>
+        </label>
+    </div>
 </template>
 
 <script>
 export default {
-    props: ['radioText', 'radioSelect'],
-    data() {
-        return {
-            
-        }
+    props: {
+        options: Array,
+        value: String
     }
 }
 </script>

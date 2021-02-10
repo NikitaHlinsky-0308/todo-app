@@ -1,39 +1,19 @@
 <template>
   <div id="app">
-    <!-- <div id="nav"> 
-      
-      <router-link to="/about">ToDo</router-link>
-    </div>
-    <router-view /> -->
     <h1>TODO.</h1>
-    <todoApp 
-      v-on:remove-all-todo="completeAllTodo"
-      v-on:remove-todo="completeTodo"
-    />
+    <todoApp />
   </div>
 </template>
 
 <script>
-import todoApp from "@/components/TodoApp.vue"
+import todoApp from "@/views/Home.vue"
 
 export default {
   components: {
     todoApp
   },
-  computed: {
-
-  },
   mounted(){
     this.$store.commit('initTasks')
-  },
-  methods: {
-    completeTodo(id) {
-      console.log(id);
-      // this.listStub = this.listStub.filter(t => t.id !== 1)
-    },
-    completeAllTodo(condition){
-      this.listStub = this.listStub.filter(task => task.isComplete === condition)
-    }
   }
 }
 </script>

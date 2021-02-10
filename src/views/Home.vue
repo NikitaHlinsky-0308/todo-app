@@ -3,15 +3,14 @@
         <TDInput />
 
         <TDListItem
-            v-for="todo of getState"
+            v-for="todo of filteredTasks"
             v-bind:key="todo.text"
             v-bind:todo="todo"
             v-on:remove-todo="completeTodo"
             v-on:remove-all-todo="completeAllTodo"
         />
-        <TDFooter
-            v-bind:radios="radioStub"
-        />
+
+        <TDFooter />
     </div>
 </template>
 
@@ -23,8 +22,7 @@ import { mapGetters } from 'vuex';
 
 
 export default {
-    name: "todo-app",
-    // props: ['todos'],
+    name: "TodoApp",
     components: {
         TDListItem,
         TDInput,
@@ -39,17 +37,9 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['getState']),
+        ...mapGetters(['filteredTasks']),
         todos(){
             return this.$store.state.listStub
-        }
-    },
-    data() {
-        return{
-            radioStub: [
-                {id: 1, text: "layer 1", isSelected: false},
-                {id: 2, text: "layer 2", isSelected: false},
-            ],
         }
     }
 }

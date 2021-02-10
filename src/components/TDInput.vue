@@ -20,6 +20,7 @@ export default {
         ...mapMutations(['createPost']),
         onSubmit(){
             this.createPost(this.text)
+            this.text = ''
         },
     }
 }

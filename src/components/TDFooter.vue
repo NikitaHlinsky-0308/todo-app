@@ -5,18 +5,14 @@
         </div>
         <div class="radio-footer"> 
             <TDRadio 
-                v-for="radio in radios"
-                :key = 'radio.text'
-                :radioSelect='radio.isSelected'
-                :radioText='radio.text'
+                :options="filters" v-model="filter"
             />
-            {{radios.isComplete}}
         </div>
         <div class="condition">
             <button 
                 class="clearBtn" 
-                @click="deleteCompleted">Clear completed </button>
-                <!-- "$emit('remove-all-todo', todo.isComplete)" -->
+                @click="deleteCompleted">Clear completed 
+            </button>
         </div>
     </div>
 </template>
@@ -27,13 +23,11 @@ import { mapGetters, mapMutations } from 'vuex';
 
 export default {
     props: ['radios','todo'],
-    // props: {
-    //     radios,
-    //     todo: {
-    //         type: Object,
-    //         required: true,
-    //     },
-    // },
+    data() {
+        return {
+            filters: ['All', 'Active', 'Completed']
+        }
+    },
     components: {
         TDRadio
     },
@@ -44,6 +38,14 @@ export default {
         ...mapGetters(['getState']),
         todos(){
             return this.$store.state.listStub
+        },
+        filter: {
+            get() {
+                return this.$store.state.filter
+            },
+            set(value) {
+                this.$store.commit('setFilter', value)
+            }
         }
     }
 }
