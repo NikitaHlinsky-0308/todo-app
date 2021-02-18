@@ -1,48 +1,56 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import v4 from 'uuid'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    todos: [],
-    filter: 'All',
+    filter: "All",
+    todos: []
   },
   getters: {
-    getState: state => {
-      return state.todos
-    },
     filteredTasks(state) {
       switch (state.filter) {
-        case 'Active':
-          return state.todos.filter(todo => !todo.isComplete)
-        case 'Completed':
-          return state.todos.filter(todo => todo.isComplete)
+        case "Active":
+          return state.todos.filter(todo => !todo.isComplete);
+        case "Completed":
+          return state.todos.filter(todo => todo.isComplete);
         default:
-          return state.todos
+          return state.todos;
       }
     }
   },
   mutations: {
-    initTasks(state){
-      state.todos = JSON.parse(localStorage.getItem('tasks'))
+    initTasks(state) {
+      state.todos = JSON.parse(localStorage.getItem("tasks"));
     },
-    createPost(state, newPost){
+    createPost(state, newPost) {
       state.todos.unshift({
+        id: v4(),
         text: newPost,
-        isComplete: false
+        isComplete: true
+      });
+      localStorage.setItem("tasks", JSON.stringify(state.todos));
+    },
+    changeTaskStatus(state, {id, value}) {
+      state.todos = state.todos.map(todo => {
+        if(todo.id === id) return { ...todo, isComplete: value }
+        else return todo
       })
-      localStorage.setItem('tasks', JSON.stringify(state.todos))
     },
     setFilter(state, filter) {
-      state.filter = filter
+      state.filter = filter;
     },
-    deleteCompleted(state){
-      state.todos = state.todos.filter(todo => !todo.isComplete)
-      localStorage.setItem('tasks', JSON.stringify(state.todos))
+    deleteCompleted(state) {
+      state.todos = state.todos.filter(todo => !todo.isComplete);
+      localStorage.setItem("tasks", JSON.stringify(state.todos));
     }
   },
-  actions: {},
+  actions: {
+    initTasks(context) {
+      context.commit("initTasks");
+    }
+  },
   modules: {}
 });
-

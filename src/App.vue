@@ -6,20 +6,30 @@
 </template>
 
 <script>
-import todoApp from "@/views/Home.vue"
+import todoApp from "@/views/Home.vue";
+import { mapMutations } from 'vuex';
 
 export default {
   components: {
     todoApp
   },
-  mounted(){
-    this.$store.commit('initTasks')
+  methods: {
+    ...mapMutations([
+      'initTasks', // `this.increment()` будет вызывать `this.$store.commit('increment')`
+    ]),
+    // ...mapMutations({
+    //   add: 'increment' // `this.add()` будет вызывать `this.$store.commit('increment')`
+    // })
+  },
+  mounted() {
+    // this.$store.commit('initTasks');
+    this.initTasks();
   }
-}
+};
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;1,200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;1,200&display=swap");
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -45,20 +55,16 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  
-  h1, span {
+
+  h1,
+  span {
     font-size: 1.5rem;
   }
 
   body {
     background-color: #d1cece;
     color: #6d6d6d;
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
   }
 }
-
-
-
-
-
 </style>
