@@ -1,5 +1,5 @@
 <template>
-  <div class="task-list">
+  <div :class="$style.taskList">
     <TDInput />
 
     <TDListItem
@@ -40,12 +40,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.btn1 {
-  background: #000;
-}
-
-.task-list {
+<style lang="scss" module>
+.taskList {
   margin: 0 auto;
   height: auto;
   width: 30vw;

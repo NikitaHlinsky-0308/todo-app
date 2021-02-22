@@ -1,14 +1,16 @@
 <template>
   <div>
-    <label class="form-radio-btn" v-for="option in options" :key="option">
+    <label :class="$style.formRadioBtn" data-test-id="radioLabel" v-for="option in options" :key="option">
       <input
+        class="form-radio"
+        data-test-id="radio"
         type="radio"
         name="filter"
         :value="option"
         :checked="value === option"
         @change="$emit('input', option)"
       />
-      <span>{{ option }}</span>
+      <span data-test-id="radio-btn">{{ option }}</span>
     </label>
   </div>
 </template>
@@ -22,18 +24,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.form-radio-btn {
+<style lang="scss" module>
+.formRadioBtn {
   display: inline-block;
   margin-right: 10px;
 }
 
-.form-radio-btn input[type="radio"] {
+.formRadioBtn input[type="radio"] {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-.form-radio-btn span {
+.formRadioBtn span {
   display: inline-block;
   cursor: pointer;
   padding: 0px 5px;
@@ -43,7 +45,7 @@ export default {
   user-select: none;
 }
 
-.form-radio-btn input[type="radio"]:checked + span {
+.formRadioBtn input[type="radio"]:checked + span {
   border: 1px solid #999;
   border-color: crimson;
 }

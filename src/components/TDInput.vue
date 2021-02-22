@@ -1,14 +1,16 @@
 <template>
-  <div class="main-input">
-    <form class="wrapper" @submit.prevent="onSubmit">
-      <button id="submitBtn" type="submit" class="input-btn">
+  <div :class="$style.mainInput">
+    <form :class="$style.wrapper" @submit.prevent="onSubmit">
+      <button id="submitBtn" type="submit" :class="$style.inputBtn" data-test-id="inputBtn">
         <i class="fas fa-chevron-down"></i>
       </button>
       <input
-        class="task-input"
-        v-model="text"
+        :class="$style.taskInput"
+        data-test-id="taskInput"
+        autofocus
         type="text"
         placeholder="What needs to be done?"
+        v-model="text"
       />
     </form>
   </div>
@@ -34,8 +36,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.main-input {
+<style lang="scss" module>
+.mainInput {
   display: flex;
   width: 100%;
   border-bottom: 1px solid #a7a7a7;
@@ -47,7 +49,7 @@ export default {
   width: 100%;
 }
 
-.input-btn {
+.inputBtn {
   border: 0;
   background-color: transparent;
   outline: none;
@@ -55,11 +57,11 @@ export default {
   border-radius: 0.3em;
 }
 
-.input-btn:hover {
+.inputBtn:hover {
   background-color: #ececec;
 }
 
-.task-input {
+.taskInput {
   font-family: "Raleway", sans-serif;
   font-style: italic;
   border: 0;

@@ -2,11 +2,16 @@
 node_modules
 /dist
 
+.eslintcache
+.npm
+
+.cache
 
 # local env files
 .env.local
 .env.*.local
 
+.coverage
 coverage
 
 # Log files

@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-input">
+  <div :class="$style.footerInput">
     <div class="counter">
       <p>2 2 left</p>
     </div>
@@ -7,7 +7,7 @@
       <TDRadio :options="filters" v-model="filter" />
     </div>
     <div class="condition">
-      <button class="clearBtn" @click="del">
+      <button :class="$style.clearBtn" @click="del" data-test-id="removeBtn">
         Clear completed
       </button>
     </div>
@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .clearBtn {
   background: rgba(255, 255, 255, 0);
   padding: 0 0.2em;
@@ -68,7 +68,7 @@ export default {
   color: white;
 }
 
-.footer-input {
+.footerInput {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

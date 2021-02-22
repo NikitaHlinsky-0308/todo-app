@@ -1,14 +1,15 @@
 <template>
-  <label class="task">
+  <label :class="$style.task" data-test-id="task">
     <input
       type="checkbox"
-      class="checkbox"
+      data-test-id="checkbox"
+      :class="$style.checkbox"
       v-model="todo.isComplete"
       @change="e => $emit('change', e)"
     />
 
-    <span class="checkmark fas fa-check"></span>
-    <span class="text-item">{{ todo.text + ' ' + todo.isComplete}}</span>
+    <span :class="$style.checkmark" class="fas fa-check" data-test-id="checkbox-img"></span>
+    <span :class="$style.textItem" data-test-id="textItem">{{ todo.text + ' ' + todo.isComplete}}</span>
   </label>
 </template>
 
@@ -24,7 +25,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 li {
   list-style-type: none;
 }
@@ -74,7 +75,7 @@ ul {
   border-color: #019b01;
 }
 
-input[type="checkbox"]:checked + .text-item {
+input[type="checkbox"]:checked + .textItem {
   text-decoration: line-through;
 }
 

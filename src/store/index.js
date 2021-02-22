@@ -23,13 +23,13 @@ export default new Vuex.Store({
   },
   mutations: {
     initTasks(state) {
-      state.todos = JSON.parse(localStorage.getItem("tasks"));
+      state.todos = JSON.parse(localStorage.getItem("tasks")) || new Array();
     },
     createPost(state, newPost) {
-      state.todos.unshift({
+      state.todos.push({
         id: v4(),
         text: newPost,
-        isComplete: true
+        isComplete: false
       });
       localStorage.setItem("tasks", JSON.stringify(state.todos));
     },
