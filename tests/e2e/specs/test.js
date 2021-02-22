@@ -22,24 +22,37 @@ describe("ToDo end-to-end", () => {
     cy.get('[data-test-id="checkbox"]').should('be.enabled')
   });
 
-  it("Radio test", () => {
+  it.only("Radio test", () => {
     const radioCheck = '[data-test-id="radioLabel"]'
     const radioInput = '[data-test-id="radio"]'
+    const task = '[data-test-id="task"]'
+
+    cy.get('[data-test-id="taskInput"]')
+      .focus().type('Testing1')
+      .should('have.value', 'Testing1')
+      .type('{enter}')
+    cy.get('[data-test-id="taskInput"]')
+      .focus().type('Testing2')
+      .should('have.value', 'Testing2')
+      .type('{enter}')
+    cy.get('[data-test-id="taskInput"]')
+      .focus().type('Testing3')
+      .should('have.value', 'Testing3')
+      .type('{enter}')
+    cy.get(task).find(('[data-test-id="textItem"]')).eq(0).should('be.visible').type('{enter}')
+    
 
     cy.get(radioInput).first().should('be.checked')
+    cy.get(task).should("have.length", 3);
 
     cy.get(radioCheck).eq(1).click()
-    cy.get(radioInput).eq(1).should('not.be.visible')
+    cy.get(task).should("have.length", 2);
 
     cy.get(radioCheck).eq(2).click()
-    cy.get(radioInput).eq(2).should('be.checked')
-
-    cy.get(radioCheck).should("have.length", 3);
+    cy.get(task).should("have.length", 1);
   })
 
   it("Single removing test", () => {
-    const removeBtn = '[data-test-id="removeBtn"]'
-
     cy.get('[data-test-id="taskInput"]')
       .focus().type('Testing')
       .should('have.value', 'Testing')
